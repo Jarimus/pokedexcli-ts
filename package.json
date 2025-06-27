@@ -1,0 +1,32 @@
+{
+  "devDependencies": {
+    "@types/node": "^24.0.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  },
+  "name": "pokedexcli-ts",
+  "version": "1.0.0",
+  "description": "A [boot.dev project](https://www.boot.dev/courses/build-pokedex-cli-typescript) to build a pokedex in TypeScript",
+  "main": "index.js",
+  "dependencies": {
+    "undici-types": "^7.8.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc",
+    "start": "node dist/main.js",
+    "dev": "npx tsc && node dist/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jarimus/pokedexcli-ts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jarimus/pokedexcli-ts/issues"
+  },
+  "homepage": "https://github.com/Jarimus/pokedexcli-ts#readme",
+  "type": "module"
+}
