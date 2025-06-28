@@ -1,5 +1,5 @@
-import { createInterface } from "readline";
 import { handleCommand } from "./commands.js";
+import { State } from "./state.js";
 
 export function cleanInput(s: string): string[] {
     const words = s.toLowerCase().trim().split(" ");
@@ -12,27 +12,20 @@ export function cleanInput(s: string): string[] {
     return result;
 }
 
+export function startREPL(state: State) {
 
-
-export function startREPL() {
-    const REPL = createInterface({
-        input: process.stdin,
-        output: process.stdout,
-        prompt: "Pokedex > ",
-    });
-
-    REPL.prompt();
-    REPL.on("line", (line) => {
+    state.interface.prompt();
+    state.interface.on("line", (line) => {
         // Clean user input
         const cleanLine = cleanInput(line);
 
         // If the input is not empty, grab the command
         if (cleanLine.length > 0) {
             const command: string = cleanLine[0];
-            handleCommand(command);
+            handleCommand(state, command);
         }
 
-        REPL.prompt();
+        state.interface.prompt();
 
     }).on("close", () => {
         console.log("Exiting REPL.");
