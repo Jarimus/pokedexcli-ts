@@ -15,21 +15,17 @@ export function cleanInput(s: string): string[] {
 export function startREPL(state: State) {
 
     state.interface.prompt();
-    state.interface.on("line", (line) => {
+    state.interface.on("line", async (line) => {
         // Clean user input
         const cleanLine = cleanInput(line);
 
         // If the input is not empty, grab the command
         if (cleanLine.length > 0) {
             const command: string = cleanLine[0];
-            handleCommand(state, command);
+            await handleCommand(state, command);
         }
 
         state.interface.prompt();
-
-    }).on("close", () => {
-        console.log("Exiting REPL.");
-        process.exit(0);
     })
 }
 
