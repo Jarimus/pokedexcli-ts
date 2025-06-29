@@ -1,3 +1,4 @@
+import { ShallowLocations } from "./pokeapi.js";
 import { State } from "./state.js";
 
 export async function commandMapb(state: State): Promise<void> {
@@ -7,6 +8,10 @@ export async function commandMapb(state: State): Promise<void> {
         return
     }
     const data = await state.api.fetchLocations(url);
+    if (data.results === undefined) {
+      console.log("Locations not found.")
+        return
+    }
     state.nextLocationsURL = data.next;
     if (data.previous === null) {
         state.prevLocationsURL = "";

@@ -17,12 +17,11 @@ export function startREPL(state: State) {
     state.interface.prompt();
     state.interface.on("line", async (line) => {
         // Clean user input
-        const cleanLine = cleanInput(line);
+        const args = cleanInput(line);
 
         // If the input is not empty, grab the command
-        if (cleanLine.length > 0) {
-            const command: string = cleanLine[0];
-            await handleCommand(state, command);
+        if (args.length > 0) {
+            await handleCommand(state, args);
         }
 
         state.interface.prompt();
