@@ -5,6 +5,8 @@ import { PokeAPI } from "./pokeapi.js";
 import { commandMap } from "./command_map.js";
 import { commandMapb } from "./command_mapb.js";
 import { commandExplore } from "./command_explore.js";
+import { commandCatch, Pokemon } from "./command_catch.js";
+import { stringify } from "querystring";
 
 export type State = {
     interface: Interface,
@@ -12,6 +14,7 @@ export type State = {
     nextLocationsURL: string,
     prevLocationsURL: string,
     commands: Record<string, CLICommand>,
+    pokeDex: Record<string, Pokemon>,
 }
 
 export type CLICommand = {
@@ -55,6 +58,11 @@ export function initState(): State {
             description: "Display pokemon at location. Usage: explore <location>",
             callback: commandExplore,
         },
+        catch: {
+            name: "catch",
+            description: "Attempt to catch a pokemon. Usage: catch <pokemon>",
+            callback: commandCatch,
+        },
     }
 
     const state: State = {
@@ -63,6 +71,7 @@ export function initState(): State {
         commands: commands,
         nextLocationsURL: "https://pokeapi.co/api/v2/location-area/",
         prevLocationsURL: "",
+        pokeDex: {},
     }
 
     return state
