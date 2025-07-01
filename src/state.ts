@@ -7,6 +7,7 @@ import { commandMapb } from "./command_mapb.js";
 import { commandExplore } from "./command_explore.js";
 import { commandCatch, Pokemon } from "./command_catch.js";
 import { stringify } from "querystring";
+import { commandInspect } from "./command_inspect.js";
 
 export type State = {
     interface: Interface,
@@ -62,6 +63,11 @@ export function initState(): State {
             name: "catch",
             description: "Attempt to catch a pokemon. Usage: catch <pokemon>",
             callback: commandCatch,
+        },
+        inspect: {
+            name: "inspect",
+            description: "Inspect a caught pokemon. Usage: inspect <pokemon>",
+            callback: commandInspect,
         },
     }
 
