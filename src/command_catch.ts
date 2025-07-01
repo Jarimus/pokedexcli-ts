@@ -37,6 +37,7 @@ export async function commandCatch(state: State, ...args: string[]) {
     const rng = Math.random() * 100;
     if ( rng < captureChance ) {
         console.log("Success!");
+        // console.log("You may now inspect it with the inspect command.");
     } else {
         console.log(`${targetPokemon} escaped!`);
         return
